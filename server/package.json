@@ -1,12 +1,12 @@
 {
   "name": "server",
-  "type": "commonjs",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web-server": "nodemon ./src/server.js",
+    "web-server": "nodemon ./src/app.js",
     "video-processor": "nodemon ./src/queue.js",
     "video-server": "nodemon ./src/video-server.js",
     "db": "docker-compose up",
@@ -16,6 +16,9 @@
   "author": "abid",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
     "bullmq": "^4.2.0",
     "colors": "^1.4.0",
     "compression": "^1.7.4",
@@ -25,6 +28,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "mongodb": "^5.7.0",
     "multer": "^1.4.5-lts.1",
+    "rimraf": "^5.0.5",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

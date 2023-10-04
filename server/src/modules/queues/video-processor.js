@@ -1,11 +1,11 @@
-const path = require("path");
-const ffmpeg = require("fluent-ffmpeg");
-const { addQueueItem } = require("./queue");
-const { VIDEO_QUEUE_EVENTS: QUEUE_EVENTS } = require("./constants");
+import { extname, basename } from "path";
+import ffmpeg from "fluent-ffmpeg";
+import { addQueueItem } from "./queue";
+import { VIDEO_QUEUE_EVENTS as QUEUE_EVENTS } from "./constants";
 
 const processRawFileToMp4 = async (filePath, outputFolder, jobData) => {
-  const fileExt = path.extname(filePath);
-  const fileNameWithoutExt = path.basename(filePath, fileExt);
+  const fileExt = extname(filePath);
+  const fileNameWithoutExt = basename(filePath, fileExt);
 
   const outputFileName = `${outputFolder}/${fileNameWithoutExt}.mp4`;
 
@@ -40,8 +40,8 @@ const processRawFileToMp4 = async (filePath, outputFolder, jobData) => {
 };
 
 const generateThumbnail = async (filePath, outputFolder, jobData) => {
-  const fileExt = path.extname(filePath);
-  const fileNameWithoutExt = path.basename(filePath, fileExt);
+  const fileExt = extname(filePath);
+  const fileNameWithoutExt = basename(filePath, fileExt);
   const outputFileName = `${outputFolder}/${fileNameWithoutExt}.png`;
   ffmpeg(filePath)
     .screenshots({
@@ -61,8 +61,8 @@ const generateThumbnail = async (filePath, outputFolder, jobData) => {
 };
 
 const processMp4ToHls = async (filePath, outputFolder, jobData) => {
-  const fileExt = path.extname(filePath);
-  const fileNameWithoutExt = path.basename(filePath, fileExt);
+  const fileExt = extname(filePath);
+  const fileNameWithoutExt = basename(filePath, fileExt);
 
   const outputFileName = `${outputFolder}/${fileNameWithoutExt}.m3u8`;
 
@@ -97,7 +97,7 @@ const processMp4ToHls = async (filePath, outputFolder, jobData) => {
 
   return;
 };
-module.exports = {
+export default {
   processRawFileToMp4,
   generateThumbnail,
   processMp4ToHls,

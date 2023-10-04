@@ -1,9 +1,6 @@
-const {
-  VIDEO_QUEUE_EVENTS: QUEUE_EVENTS,
-  NOTIFY_EVENTS,
-} = require("./constants");
-const { addQueueItem } = require("./queue");
-const { processRawFileToMp4, processMp4ToHls } = require("./video-processor");
+import { VIDEO_QUEUE_EVENTS as QUEUE_EVENTS, NOTIFY_EVENTS } from "./constants";
+import { addQueueItem } from "./queue";
+import { processRawFileToMp4, processMp4ToHls } from "./video-processor";
 
 async function uploadedHandler(job) {
   console.log("uploaded handler!", job.data.title);
@@ -74,6 +71,6 @@ const QUEUE_EVENT_HANDLERS = {
   [NOTIFY_EVENTS.NOTIFY_VIDEO_HLS_CONVERTED]: notifyVideoHlsConvertedHandler,
 };
 
-module.exports = {
+export default {
   QUEUE_EVENT_HANDLERS,
 };
