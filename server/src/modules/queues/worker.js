@@ -1,6 +1,6 @@
-const { Worker, QueueEvents } = require("bullmq");
-const { VIDEO_QUEUE_EVENTS } = require("./constants");
-const { QUEUE_EVENT_HANDLERS } = require("./handlers");
+import { Worker, QueueEvents } from "bullmq";
+import { VIDEO_QUEUE_EVENTS } from "./constants";
+import { QUEUE_EVENT_HANDLERS } from "./handlers";
 
 const redisConnection = { host: "localhost", port: 6379 };
 
@@ -62,4 +62,4 @@ const setupAllQueueEvents = (db) => {
   return true;
 };
 
-module.exports = { setupAllQueueEvents, listenQueueEvent };
+export default { setupAllQueueEvents, listenQueueEvent };
